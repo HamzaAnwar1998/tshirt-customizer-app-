@@ -24,7 +24,9 @@ export const Viewer = ({art}) => {
     }))
 
     const addImageToShirt=(id)=>{
-        console.log(id);  // got the id    
+        console.log(id);  // got the id
+        // console.log(art);  // not getting the data but when I comment and then uncomment the same console.log
+        // and then when I check the browser console I am surprisingly getting the data 
         const pictureList=art.filter(newArt=>id===newArt.id);
         console.log(pictureList); // I am stuck in an really annoying issue &
         // that is console.log(pictureList) is giving me an empty array array(0) but when I comment
