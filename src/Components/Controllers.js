@@ -9,11 +9,12 @@ import {tag} from 'react-icons-kit/feather/tag'
 import {tshirtOutline} from 'react-icons-kit/ionicons/tshirtOutline'
 import { Art } from './Art'
 import {ic_search} from 'react-icons-kit/md/ic_search'
+import * as ReactBootstrap from 'react-bootstrap'
 
-export const Controllers = ({fetchArt,art}) => {
+export const Controllers = ({fetchArt,art,loading}) => {
 
     const handleAddArt=()=>{
-        fetchArt()
+        fetchArt();
     }   
 
     return (
@@ -92,7 +93,7 @@ export const Controllers = ({fetchArt,art}) => {
                         
             </div>
             </>)}
-            {art.length>0&&(<div className='controllers-box'>
+            {art.length>0&&(<div className='controllers-box'>            
             <div className='controllers-icons'>
                     <div className='box'>
                         <div className='icon'>
@@ -131,7 +132,7 @@ export const Controllers = ({fetchArt,art}) => {
                         <div className='text'>Add Notes</div>
                     </div>
                 </div>
-                <div className='customizer-box'>
+                <div className='customizer-box'>                    
                     <div className="input-group mb-3 container">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1">
@@ -140,9 +141,21 @@ export const Controllers = ({fetchArt,art}) => {
                         </div>
                         <input type="text" className="form-control" placeholder="Search for artwork" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
-                    <div className='art-box'>
+                    {/* {loading===true&&(
+                        <><ReactBootstrap.Spinner animation="border" /></>
+                    )} */}
+                    {loading ? (
+                        <div className='loader-box'>
+                            <ReactBootstrap.Spinner animation="border" />                            
+                        </div>
+                    ):(
+                        <div className='art-box'>
+                            <Art art={art}/>
+                        </div>  
+                    )}
+                    {/* <div className='art-box'>
                         <Art art={art}/>
-                    </div>                    
+                    </div>                     */}
                 </div>            
             </div>)} 
         </>              

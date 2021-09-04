@@ -21,17 +21,12 @@ export const Viewer = ({art}) => {
         collect:(monitor)=>({
             isOver: !!monitor.isOver()
         })
-    }))
+    }),[art])
 
     const addImageToShirt=(id)=>{
-        console.log(id);  // got the id
-        // console.log(art);  // not getting the data but when I comment and then uncomment the same console.log
-        // and then when I check the browser console I am surprisingly getting the data 
+        console.log(id);  // got the id       
         const pictureList=art.filter(newArt=>id===newArt.id);
-        console.log(pictureList); // I am stuck in an really annoying issue &
-        // that is console.log(pictureList) is giving me an empty array array(0) but when I comment
-        // this console.log statement and then uncomment it again then in browser I will
-        // get my data in console.log as array(1)       
+        console.log(pictureList); // got the array       
         setDroppedImages((droppedImages)=>[...droppedImages,pictureList[0]]);
     }    
 
@@ -53,13 +48,17 @@ export const Viewer = ({art}) => {
                 </div>
             </div>
             
-            <div className='img' ref={drop}>
+            <div className='img' ref={drop}
+            >
                 <img src={image}/>
-                {/* <>{droppedImages.map(img=>(
-                    <div key={img.id}>
-                        <img src={img.urls.full} style={{width:150+'px'}}/>
-                    </div>
-                ))}</> */}
+                <div className='absolute-div'
+                style={{border: isOver ? '3px solid #6db5e7':'0px'}}>
+                    <>{droppedImages.map(img=>(
+                        <div key={img.id} className='art-img'>
+                            <img src={img.urls.full}/>
+                        </div>
+                    ))}</>
+                </div>
             </div>
             <div className='functionalities-box'>
                 <div className='box' onClick={()=>setImage(front)}>
